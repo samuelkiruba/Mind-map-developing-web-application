@@ -3,17 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mind Map</title>
+    <title>Mind Map Application</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="controls">
-        <input type="text" id="nodeText" placeholder="Enter node text">
-        <button id="addNodeButton">Add Node</button>
-        <button id="deleteNodeButton">Delete Node</button>
-        <button id="renameNodeButton">Rename Node</button>
+    <div class="header">
+        <h1>Mind Map Application</h1>
     </div>
-    <canvas id="canvas"></canvas>
+    <div class="container">
+        <div class="controls">
+            <input type="text" id="nodeText" placeholder="Node Text">
+            <button id="addNodeButton">Add Node</button>
+            <button id="deleteNodeButton">Delete Node</button>
+            <button id="renameNodeButton">Rename Node</button>
+        </div>
+        <canvas id="canvas"></canvas>
+        <div class="rough-notes">
+            <h2>Rough Notes</h2>
+            <textarea id="notesArea" rows="20" placeholder="Write your notes here..."></textarea>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
