@@ -15,6 +15,7 @@ canvas.height = 600;
 
 document.getElementById('addNodeButton').addEventListener('click', addNode);
 document.getElementById('deleteNodeButton').addEventListener('click', deleteNode);
+document.getElementById('renameNodeButton').addEventListener('click', renameNode);
 canvas.addEventListener('mousedown', startDrag);
 canvas.addEventListener('mouseup', endDrag);
 canvas.addEventListener('mousemove', dragNode);
@@ -56,6 +57,16 @@ function draw() {
     // Draw all nodes
     nodes.forEach(node => {
         ctx.fillStyle = node.color;
+
+        // Highlight the selected node
+        if (node.id === selectedNodeId) {
+            ctx.strokeStyle = '#FF0000'; // Highlight color (red)
+            ctx.lineWidth = 3; // Thicker border for highlight
+        } else {
+            ctx.strokeStyle = '#000'; // Default border color
+            ctx.lineWidth = 1; // Default border width
+        }
+
         ctx.beginPath();
         ctx.roundRect(node.x, node.y, 100, 50, 10); // Rounded rectangle
         ctx.fill();
@@ -100,14 +111,22 @@ function handleCanvasClick(event) {
         // If no node is selected yet, select it
         if (firstSelectedNodeId === null) {
             firstSelectedNodeId = clickedNode.id; // Select the first node
+            selectedNodeId = clickedNode.id; // Set selected node for highlighting
         } else if (firstSelectedNodeId !== clickedNode.id) {
             // Second node clicked, create connection
             links.push({ source: firstSelectedNodeId, target: clickedNode.id });
             firstSelectedNodeId = null; // Reset the selection after connection
+            selectedNodeId = null; // Deselect after connection
         } else {
             // If the same node is clicked, reset selection
             firstSelectedNodeId = null;
+            selectedNodeId = null; // Deselect
         }
+        draw();
+    } else {
+        // If clicking on an empty area, reset selection
+        selectedNodeId = null;
+        firstSelectedNodeId = null;
         draw();
     }
 }
@@ -153,6 +172,21 @@ function deleteNode() {
         links = links.filter(link => link.source !== selectedNodeId && link.target !== selectedNodeId);
         selectedNodeId = null;
         draw(); // Redraw after deletion
+    }
+}
+
+function renameNode() {
+    if (selectedNodeId !== null) {
+        const newName = prompt("Enter new name for the node:");
+        if (newName) {
+            const node = nodes.find(node => node.id === selectedNodeId);
+            if (node) {
+                node.text = newName; // Update the node text
+                draw(); // Redraw to reflect the new name
+            }
+        }
+    } else {
+        alert("Please select a node to rename.");
     }
 }
 
