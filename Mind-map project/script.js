@@ -177,18 +177,17 @@ function deleteNode() {
 
 function renameNode() {
     if (selectedNodeId !== null) {
-        const newName = prompt("Enter new name for the node:");
-        if (newName) {
-            const node = nodes.find(node => node.id === selectedNodeId);
-            if (node) {
-                node.text = newName; // Update the node text
-                draw(); // Redraw to reflect the new name
+        const currentNode = nodes.find(node => node.id === selectedNodeId);
+        if (currentNode) {
+            const newName = prompt("Enter new name for the node:", currentNode.text); // Pre-fills the prompt with current name
+            if (newName !== null && newName.trim() !== "") {
+                currentNode.text = newName;
+                draw(); // Redraw the canvas with the updated name
             }
         }
-    } else {
-        alert("Please select a node to rename.");
     }
 }
+
 
 window.addEventListener('resize', () => {
     canvas.width = 800;
