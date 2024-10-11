@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mind Map Application</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="header">
@@ -12,17 +13,28 @@
     </div>
     <div class="container">
         <div class="controls">
-            <input type="text" id="nodeText" placeholder="Node Text">
+            <input type="text" id="nodeText" placeholder="Enter node text">
             <button id="addNodeButton">Add Node</button>
             <button id="deleteNodeButton">Delete Node</button>
             <button id="renameNodeButton">Rename Node</button>
+            <button id="saveImageButton">Export as Image</button>
         </div>
+
         <canvas id="canvas"></canvas>
-        <div class="rough-notes">
-            <h2>Rough Notes</h2>
-            <textarea id="notesArea" rows="20" placeholder="Write your notes here..."></textarea>
+        <div>
+            <div class="rough-notes">
+                <h2>Rough Notes</h2>
+                <textarea id="notes" placeholder="Write your rough notes here..."></textarea>
+            </div>
+
+            <div class="bullet-points">
+                <h4>Action Items</h4>
+                <input type="text" id="bulletInput" placeholder="Add Action item">
+                <button onclick="addBulletPoint()">Add Action Item</button>
+                <button onclick="deleteBulletPoint()">Delete Selected Action Item</button>
+                <ul id="bulletList"></ul>
+            </div>
         </div>
     </div>
-    <script src="script.js"></script>
 </body>
 </html>

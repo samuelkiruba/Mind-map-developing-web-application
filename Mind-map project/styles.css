@@ -17,7 +17,7 @@ body {
 
 .container {
     display: flex; /* Align controls, canvas, and notes side by side */
-    align-items: center; /* Center align items vertically */
+    align-items: flex-start; /* Align items at the top */
     justify-content: center; /* Center the content */
     margin-top: 20px; /* Added margin to bring everything down */
     max-width: 1200px; /* Set a max width for better layout */
@@ -56,17 +56,69 @@ body {
 
 .rough-notes {
     display: flex;
-    flex-direction: column;
-    width: 300px; /* Set width for rough notes */
-    height: 600px; /* Set a fixed height for rough notes to match canvas */
+    flex-direction: column; /* Stack elements vertically */
+    width: 450px; /* Width for rough notes */
+    height: 300px; /* Height for rough notes */
+    margin-right: 20px; /* Space to the right of rough notes */
+    padding: 15px; /* Padding for rough notes area */
+    border: 1px solid #ccc; /* Border for distinction */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #fff; /* Background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow-y: auto; /* Enable scrolling if content overflows */
 }
 
 .rough-notes h2 {
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Space below header */
 }
 
 .rough-notes textarea {
-    padding: 10px;
+    padding: 10px; /* Padding for better spacing */
     resize: none; /* Disable resizing */
     flex-grow: 1; /* Allow textarea to grow and fill available space */
+    width: calc(100% - 20px); /* Full width minus padding */
+    height: 500px; /* Set a fixed height for the textarea */
+    border: 1px solid #ccc; /* Border for textarea */
+    border-radius: 4px; /* Rounded corners for textarea */
+}
+
+.bullet-points {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    width: 450px; /* Width for bullet points */
+    height: 300px; /* Height for bullet points */
+    padding: 15px; /* Padding for bullet points area */
+    border: 1px solid #ccc; /* Border for distinction */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #fff; /* Background color */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+.bullet-points h4 {
+    margin-bottom: 10px; /* Space below header */
+}
+
+.bullet-points input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 20px); /* Full width minus padding */
+}
+
+.bullet-points button {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 20px); /* Full width minus padding */
+    cursor: pointer;
+}
+
+.bullet-point {
+    padding: 5px;
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for highlight */
+}
+
+.bullet-point.selected {
+    background-color: #007BFF; /* Highlight selected bullet point */
+    color: #fff; /* Change text color for visibility */
 }
